@@ -1,7 +1,7 @@
 // src/components/FilterBar.jsx
 import React, { useState, useEffect } from "react";
 
-const FilterBar = ({ onFilterChange, onGenerate }) => {
+const FilterBar = ({ onFilterChange }) => {
   const [year, setYear] = useState(new Date().getFullYear());
   const [program, setProgram] = useState(null);
   const [programs, setPrograms] = useState([]);
@@ -9,11 +9,13 @@ const FilterBar = ({ onFilterChange, onGenerate }) => {
   useEffect(() => {
     const fetchPrograms = async () => {
       try {
-        const response = await fetch(`${import.meta.env.VITE_API_URL}/api/programs`);
+        const response = await fetch(
+          `${import.meta.env.VITE_API_URL}/api/programs`
+        );
         const data = await response.json();
         setPrograms(data);
         if (data.length > 0) {
-          setProgram(data[0].id); 
+          setProgram(data[0].id);
         }
       } catch (error) {
         console.error("Error fetching programs:", error);
@@ -23,7 +25,6 @@ const FilterBar = ({ onFilterChange, onGenerate }) => {
     fetchPrograms();
   }, []);
 
-  
   useEffect(() => {
     if (program !== null) {
       onFilterChange(year, program);
@@ -31,68 +32,76 @@ const FilterBar = ({ onFilterChange, onGenerate }) => {
   }, [year, program, onFilterChange]);
 
   return (
-  <div
-    style={{
-      display: "flex",
-      justifyContent: "space-between", 
-      alignItems: "center",
-      marginBottom: "40px",
-    }}
-  >
-    
-    <div style={{ display: "flex", gap: "10px" }}>
-      {/* Year Selector */}
-      <select
-        value={year}
-        onChange={(e) => setYear(parseInt(e.target.value))}
-        style={{
-          padding: "8px",
-          borderRadius: "4px",
-          border: "1px solid #ccc",
-        }}
-      >
-        {[2025, 2024, 2023, 2022].map((y) => (
-          <option key={y} value={y}>
-            {y}
-          </option>
-        ))}
-      </select>
+    <div className="bg-gray-50 mb-10">
+      <div className="px-6 pt-6">
+        {/* Logo */}
+        <div className="text-xl font-bold text-gray-800 mb-4">ANALYSEA</div>
+      </div>
+      
+      <div className="px-6 pb-6">
+        <div className="flex justify-between items-center">
+          {/* Left side - Selectors */}
+          <div className="flex items-center gap-4">
+            {/* Year Selector */}
+            <div className="relative">
+              <select
+                value={year}
+                onChange={(e) => setYear(parseInt(e.target.value))}
+                className="appearance-none bg-white border border-gray-300 rounded px-4 py-2 pr-8 text-sm focus:outline-none focus:ring-2 focus:border-transparent"
+              >
+                {[2025, 2024, 2023, 2022].map((y) => (
+                  <option key={y} value={y}>
+                    📅 {y}
+                  </option>
+                ))}
+              </select>
+              <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700">
+                <svg
+                  className="fill-current h-4 w-4"
+                  xmlns="http://www.w3.org/2000/svg"
+                  viewBox="0 0 20 20"
+                >
+                  <path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z" />
+                </svg>
+              </div>
+            </div>
 
-      {/* Program Selector */}
-      <select
-        value={program || ""}
-        onChange={(e) => setProgram(parseInt(e.target.value))}
-        style={{
-          padding: "8px",
-          borderRadius: "4px",
-          border: "1px solid #ccc",
-        }}
-      >
-        {programs.map((p) => (
-          <option key={p.id} value={p.id}>
-            {p.name}
-          </option>
-        ))}
-      </select>
+            {/* Program Selector */}
+            <div className="relative">
+              <select
+                value={program || ""}
+                onChange={(e) => setProgram(parseInt(e.target.value))}
+                className="appearance-none bg-white border border-gray-300 rounded px-4 py-2 pr-8 text-sm focus:outline-none focus:ring-2 focus:border-transparent"
+              >
+                {programs.map((p) => (
+                  <option key={p.id} value={p.id}>
+                    {p.name}
+                  </option>
+                ))}
+              </select>
+              <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700">
+                <svg
+                  className="fill-current h-4 w-4"
+                  xmlns="http://www.w3.org/2000/svg"
+                  viewBox="0 0 20 20"
+                >
+                  <path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z" />
+                </svg>
+              </div>
+            </div>
+          </div>
+
+          {/* Right side - Generate Button */}
+          <button
+            className="bg-pink-500 hover:bg-pink-600 text-white font-medium px-6 py-2 rounded transition-colors duration-200 disabled:opacity-50 disabled:cursor-not-allowed"
+            disabled
+          >
+            Generate
+          </button>
+        </div>
+      </div>
     </div>
-
-    {/* Generate Button */}
-    <button
-      onClick={() => onGenerate(year, program)}
-      style={{
-        padding: "10px 20px",
-        backgroundColor: "#ff1493",
-        color: "white",
-        border: "none",
-        borderRadius: "4px",
-        cursor: "pointer",
-      }}
-      disabled={!program}
-    >
-      Generate
-    </button>
-  </div>
-);
+  );
 };
 
 export default FilterBar;
