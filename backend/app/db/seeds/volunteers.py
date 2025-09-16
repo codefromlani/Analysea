@@ -43,6 +43,6 @@ def seed_volunteers():
                 print(f"Adding Volunteer: {data['name']}")
 
         db.commit()
-        print("✅ Volunteers table seeded successfully.")
+        print("Volunteers table seeded successfully.")
     finally:
         db.close()
