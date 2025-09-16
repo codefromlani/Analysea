@@ -14,3 +14,4 @@ class Program(Base):
 
     learners = relationship("Learner", back_populates="program")
     volunteer_hours = relationship("VolunteerHours", back_populates="program") 
+    cohorts = relationship("ProgramCohort", back_populates="program")
