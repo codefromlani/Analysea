@@ -5,3 +5,4 @@ from .programs import seed_programs
 from .learners import seed_learners
 from .volunteers import seed_volunteers
 from .volunteer_hours import seed_volunteer_hours
+from .program_cohorts import seed_program_cohorts
