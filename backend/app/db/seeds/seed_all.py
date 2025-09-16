@@ -6,6 +6,7 @@ from app.db.seeds import (
     seed_learners,
     seed_volunteers,
     seed_volunteer_hours,
+    seed_program_cohorts,
 )
 
 def run():
@@ -23,6 +24,9 @@ def run():
 
     print("🌱 Seeding Volunteer Hours...")
     seed_volunteer_hours()
+
+    print("🌱 Seeding Program Cohorts Hours...")
+    seed_program_cohorts()
 
     print("✅ All seeders completed successfully!")
 
