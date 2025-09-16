@@ -22,6 +22,6 @@ def seed_partners():
                 print(f"Adding partner: {data['name']}")
 
         db.commit()
-        print("Partners table seeded successfully.")
+        print("✅ Partners table seeded successfully.")
     finally:
         db.close()
