@@ -11,7 +11,7 @@ def seed_volunteer_hours():
             {
                 "volunteer_id": 1,  
                 "program_id": 1,  
-                "hours_contributed": 2.5,
+                "hours_contributed": 3.0,
                 "date_contributed": date(2023, 8, 17)
             },
             {
