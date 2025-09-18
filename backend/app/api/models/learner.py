@@ -15,3 +15,4 @@ class Learner(Base):
     is_completed = Column(Boolean, default=False)
     
     program = relationship("Program", back_populates="learners")
+    enrollments = relationship("Enrollment", back_populates="learner", cascade="all, delete-orphan")

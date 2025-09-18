@@ -1,10 +1,13 @@
+# app/api/services/metrics.py
+
 from sqlalchemy.orm import Session
+from sqlalchemy import func
+from sqlalchemy import extract
+
 from ..models.learner import Learner
 from ..models.partner import Partner
 from ..models.volunteer import Volunteer
 from ..models.volunteer_hours import VolunteerHours
-from sqlalchemy import func
-from sqlalchemy import extract
 
 
 class MetricService:

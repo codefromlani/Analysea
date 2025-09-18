@@ -1,6 +1,6 @@
 # app/api/models/program_cohort.py
 
-from sqlalchemy import Column, Integer, String, Date, ForeignKey, Boolean
+from sqlalchemy import Column, Integer, String, Date, ForeignKey
 from sqlalchemy.orm import relationship
 from app.db.database import Base
 

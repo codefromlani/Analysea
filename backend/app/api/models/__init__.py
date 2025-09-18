@@ -6,3 +6,5 @@ from .volunteer_hours import VolunteerHours
 from .volunteer import Volunteer
 from .program import Program
 from .program_cohort import ProgramCohort
+from .course import Course
+from .enrollment import Enrollment
