@@ -1,7 +1,7 @@
 // src/components/FilterBar.jsx
 import React, { useState, useEffect } from "react";
 
-const FilterBar = ({ onFilterChange }) => {
+const FilterBar = ({ onFilterChange, onGenerate }) => {
   const [year, setYear] = useState(new Date().getFullYear());
   const [program, setProgram] = useState(null);
   const [programs, setPrograms] = useState([]);
@@ -37,7 +37,7 @@ const FilterBar = ({ onFilterChange }) => {
         {/* Logo */}
         <div className="text-xl font-bold text-gray-800 mb-4">ANALYSEA</div>
       </div>
-      
+
       <div className="px-6 pb-6">
         <div className="flex justify-between items-center">
           {/* Left side - Selectors */}
@@ -92,9 +92,11 @@ const FilterBar = ({ onFilterChange }) => {
           </div>
 
           {/* Right side - Generate Button */}
+          {/* Generate Button — enabled only when program is set */}
           <button
+            onClick={() => onGenerate && onGenerate(year, program)}
             className="bg-pink-500 hover:bg-pink-600 text-white font-medium px-6 py-2 rounded transition-colors duration-200 disabled:opacity-50 disabled:cursor-not-allowed"
-            disabled
+            disabled={!program}
           >
             Generate
           </button>
